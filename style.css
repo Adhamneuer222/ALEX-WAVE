@@ -1,0 +1,542 @@
+/* ============================================================
+   1. الإعدادات العامة والخطوط
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+:root {
+    --primary: #c7a17a;
+    /* لون القهوة الفاتح */
+    --secondary: #4a2d15;
+    /* لون القهوة الداكن */
+    --bg-cream: #e6d5b8;
+    --dark-grey: #333;
+    --black: #1f2226;
+    --gold: #d6b37c;
+    --white: #ffffff;
+    --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* هوية الألوان للأقسام التفصيلية */
+    --cold-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    /* أزرق ثلجي */
+    --hot-gradient: linear-gradient(135deg, #4a2d15, #1a0f08);
+    /* بني دافئ */
+    --dessert-gradient: linear-gradient(135deg, #3d2b1f, #634832);
+    /* ألوان كراميل */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    background-color: var(--white);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    color: #c7a17a;
+}
+
+h1 {
+    font-family: "Oswald", sans-serif;
+    color: whitesmoke;
+}
+
+h3 {
+    font-family: "Oswald", sans-serif;
+    color: whitesmoke;
+}
+
+h4 {
+    font-family: "Oswald", sans-serif;
+    color: var#333(--dark-grey);
+}
+
+h6 {
+    font-family: "Oswald", sans-serif;
+    color: var#333(--dark-grey);
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ============================================================
+   2. الأنيميشن (Animations)
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes revealLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes revealRight {
+    from {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* ربط الأنيميشن بالكلاسات الموجودة في HTML */
+
+.reveal-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.reveal-left {
+    animation: revealLeft 1s ease-out forwards;
+}
+
+.reveal-right {
+    animation: revealRight 1s ease-out forwards;
+}
+
+.floating-img {
+    animation: float 4s ease-in-out infinite;
+}
+
+
+/* ============================================================
+   3. الهيدر والقائمة (Navigation)
+   ============================================================ */
+
+#header {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.98);
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ضبط القائمة وإزالة النقاط */
+
+#header .navbar ul {
+    display: flex;
+    list-style: none;
+    /* إزالة النقاط تماماً */
+    padding: 0;
+    margin: 0;
+}
+
+#header .navbar ul li a {
+    color: var(--dark-grey);
+    font-size: 16px;
+    margin: 0 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: var(--transition);
+    position: relative;
+    /* ضروري لعمل تأثير الخط السفلي */
+    display: inline-block;
+}
+
+
+/* تأثير الخط السفلي عند تمرير الماوس (Hover Animation) */
+
+#header .navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary);
+    /* اللون الذي اخترته */
+    transition: var(--transition);
+}
+
+#header .navbar ul li a:hover {
+    color: var(--primary);
+}
+
+#header .navbar ul li a:hover::after {
+    width: 100%;
+    /* تمدد الخط عند التمرير */
+}
+
+
+/* أنيميشن لظهور الناف بار عند فتح الصفحة */
+
+#header {
+    animation: navbarSlideDown 0.8s ease-out;
+}
+
+@keyframes navbarSlideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* ============================================================
+   4. الأقسام الرئيسية (Sections)
+   ============================================================ */
+
+section {
+    padding: 100px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+
+/* Home Section */
+
+#home {
+    padding-top: 150px;
+    background-color: var(--bg-color);
+}
+
+.home-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.home-content h1 {
+    font-size: 70px;
+    margin: 20px 0;
+    color: var(--secondary);
+    line-height: 1.1;
+}
+
+
+/* About Section */
+
+#about {
+    background: #fff;
+}
+
+#about .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-images {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.img-reveal-1 {
+    width: 220px;
+    border-radius: 15px;
+    transform: rotate(-5deg);
+    animation: revealLeft 1.2s ease-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.img-reveal-2 {
+    width: 220px;
+    border-radius: 15px;
+    transform: rotate(5deg);
+    margin-top: 40px;
+    animation: revealLeft 1.5s ease-out;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    text-align: left;
+}
+
+.about-content h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.about-content .item {
+    margin: 25px 0;
+    padding-left: 15px;
+    border-left: 4px solid var(--primary);
+}
+
+
+/* ============================================================
+   5. المنيو وتنسيق الألوان (Menu & Categories)
+   ============================================================ */
+
+#Menu {
+    background: var(--black);
+    color: var(--bg-cream);
+}
+
+#Menucards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.menu-item {
+    width: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.menu-item:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.menu-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.menu-btn:hover {
+    background: var(--gold);
+    transform: scale(1.05);
+}
+
+
+/* --- ألوان أقسام المنيو التفصيلية --- */
+
+.detailed-menu {
+    color: #fff;
+}
+
+#Cold {
+    background: var(--cold-gradient);
+}
+
+#Hot {
+    background: var(--hot-gradient);
+}
+
+#Dessert {
+    background: var(--dessert-gradient);
+}
+
+.detailed-menu .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    transition: var(--transition);
+}
+
+.item-hover:hover {
+    transform: scale(1.02);
+    border-color: var(--gold);
+    background: rgba(245, 243, 243, 0.08);
+}
+
+.detailed-menu .item img {
+    width: 90px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.detailed-menu .details {
+    flex: 1;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.detailed-menu .price {
+    font-size: 1.4rem;
+    color: var(--gold);
+    border-left: 2px solid var(--primary);
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+
+/* ============================================================
+   6. آراء العملاء والتواصل (Testimonials & Contact)
+   ============================================================ */
+
+.testimonials {
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('coffe shop background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.testimonials h2 {
+    color: var(--gold);
+    margin-bottom: 80px;
+    font-size: 40px;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background-color: var(--secondary);
+    padding: 85px 32px 45px;
+    width: 350px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+}
+
+.img-box {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    border-radius: 50%;
+    padding: 6px;
+}
+
+.img-box img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.contact-section {
+    background-color: var(--bg-secondary);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+}
+
+.contact-form input:focus {
+    border-color: var(--primary);
+}
+
+
+/* Footer */
+
+.footer {
+    background: var(--black);
+    color: #fff;
+    padding: 50px 0;
+}
+
+.social-icons {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.social-icons a {
+    color: var(--primary);
+    margin: 0 15px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--gold);
+}
+
+
+/* ============================================================
+   7. الاستجابة للشاشات (Responsive)
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .home-content,
+    #about .row,
+    .row {
+        grid-template-columns: 1fr;
+    }
+    .about-content {
+        text-align: center;
+    }
+    .about-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    .img-reveal-1,
+    .img-reveal-2 {
+        width: 80%;
+        margin: 10px 0;
+        transform: none;
+    }
+}
